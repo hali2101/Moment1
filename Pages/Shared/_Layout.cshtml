@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="~/images/logo200x100.png" width="200" height="100" alt="">
+        </div>
+        <aside class="asidedate">
+            @{
+                //hämtar in dagens datum och tid
+                var datetime = DateTime.Now;
+                //plockar ut bara datum
+                var date = datetime.Date.ToString("yyyy-MM-dd");
+            }
+            <p>Dagens datum är @date</p>
+        </aside>
+    </header>
+    <div class="maingrid">
+        <nav class="nav">
+            <ul>
+                <li class="li-nav">
+                    <a aria-current="page" class="active-links" asp-page="index">Start</a>
+                </li>
+                <li class="li-nav">
+                    <a asp-page="/Razor" class="active-links">Razor</a>
+                </li>
+                <li class="li-nav">
+                    <a asp-page="/About" class="active-links">Om sidan</a>
+                </li>
+            </ul>
+        </nav>
+        <main class="main">
+            <article>
+                @RenderBody()
+            </article>
+
+        </main>
+    </div>
+    <footer>
+        <p>Av Hanna Lindholm | Konktakta mig via e-post: hali2101@student.miun.se</p>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
